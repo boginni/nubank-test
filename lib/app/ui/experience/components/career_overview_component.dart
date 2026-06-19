@@ -1,0 +1,101 @@
+import 'package:flutter/material.dart';
+
+import '../../../domain/dto/entities/resume_experience_entity.dart';
+import '../../app/extensions/context_extensions.dart';
+
+class CareerOverviewComponent extends StatelessWidget {
+  const CareerOverviewComponent({
+    super.key,
+    required this.experience,
+  });
+
+  final ResumeExperienceEntity experience;
+
+  @override
+  Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    final colorScheme = theme.colorScheme;
+
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Row(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Icon(
+              Icons.auto_awesome,
+              color: colorScheme.primary,
+              size: 28,
+            ),
+            const SizedBox(width: 8),
+            SelectableText(
+              context.l10n.overview,
+              style: theme.textTheme.titleLarge?.copyWith(),
+            ),
+          ],
+        ),
+        const SizedBox(height: 8),
+        SelectableText(
+          experience.overview,
+          style: theme.textTheme.bodyLarge?.copyWith(
+            color: colorScheme.onSurfaceVariant,
+            height: 1.6,
+          ),
+        ),
+        const SizedBox(height: 32),
+        const Divider(),
+        const SizedBox(height: 32),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          children:
+              experience.kpis
+                  .map(
+                    (kpi) => _StatItem(
+                      value: kpi.value,
+                      label: kpi.name,
+                    ),
+                  )
+                  .toList(),
+
+          // [
+          //   _StatItem(value: '7+', label: 'Years Exp.'),
+          //   _StatItem(value: '2M+', label: 'Users Impacted'),
+          //   _StatItem(value: '97%', label: 'Error-free'),
+          //   _StatItem(value: '50+', label: 'Projects'),
+          // ],
+        ),
+      ],
+    );
+  }
+}
+
+class _StatItem extends StatelessWidget {
+  final String value;
+  final String label;
+
+  const _StatItem({required this.value, required this.label});
+
+  @override
+  Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    return Column(
+      children: [
+        SelectableText(
+          value,
+          style: theme.textTheme.headlineSmall?.copyWith(
+            fontWeight: FontWeight.w900,
+            color: theme.colorScheme.primary,
+          ),
+        ),
+        const SizedBox(height: 4),
+        SelectableText(
+          label,
+          style: theme.textTheme.labelMedium?.copyWith(
+            color: theme.colorScheme.secondary,
+            letterSpacing: 0.5,
+          ),
+        ),
+      ],
+    );
+  }
+}

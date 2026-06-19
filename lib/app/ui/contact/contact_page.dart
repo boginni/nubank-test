@@ -1,0 +1,55 @@
+import 'package:flutter/material.dart';
+import '../app/components/responsive_builder.dart';
+import '../app/store/generic_store.dart';
+import 'contact_controller.dart';
+import 'pages/sizes/desktop/contact_page_desktop.dart';
+import 'pages/sizes/phone/contact_page_phone.dart';
+import 'pages/sizes/wide/contact_page_wide.dart';
+
+class ContactPage extends StatefulWidget {
+  const ContactPage({
+    super.key,
+    required this.controller,
+    this.forceDisplaySize,
+  });
+
+  final ContactController controller;
+  final ResponsiveDisplaySizeEnum? forceDisplaySize;
+
+  @override
+  State<ContactPage> createState() => _ContactPageState();
+}
+
+class _ContactPageState extends State<ContactPage> {
+  ContactController get controller => widget.controller;
+
+  @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance.addPostFrameCallback(
+      (timeStamp) {
+        if (controller.store.value is GenericStoreInitialState) {
+          init();
+        }
+      },
+    );
+  }
+
+  Future<void> init() async {
+    await controller.load();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return ResponsiveBuilder(
+      forceDisplaySize: widget.forceDisplaySize,
+      phone: (context) => ContactPagePhone(controller: controller, init: init),
+      tablet: (context) => ContactPagePhone(controller: controller, init: init),
+      desktop:
+          (context) => ContactPageDesktop(controller: controller, init: init),
+      wide: (context) => ContactPageWide(controller: controller, init: init),
+      ultraWide:
+          (context) => ContactPageWide(controller: controller, init: init),
+    );
+  }
+}

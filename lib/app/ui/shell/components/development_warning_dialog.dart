@@ -1,0 +1,56 @@
+import 'package:flutter/foundation.dart';
+import 'package:flutter/material.dart';
+
+import '../../app/extensions/context_extensions.dart';
+
+class DevelopmentWarningDialog extends StatelessWidget {
+  const DevelopmentWarningDialog({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return AlertDialog(
+      title: SelectableText(
+        context.l10n.under_development,
+        textAlign: TextAlign.center,
+      ),
+      content: Column(
+        mainAxisSize: MainAxisSize.min,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          SelectableText(
+            context.l10n.this_portfolio_is_currently_under_development,
+          ),
+          SelectableText(
+            context.l10n.please_check_back_later,
+          ),
+        ],
+      ),
+      actions: [
+        TextButton(
+          onPressed: () {
+            Navigator.of(context).pop();
+            WidgetsBinding.instance.addPostFrameCallback(
+              (timeStamp) {
+                if (kDebugMode) {
+                  return;
+                }
+
+                if (context.mounted) {
+                  showDialog(
+                    context: context,
+                    builder: (context) => const DevelopmentWarningDialog(),
+                  );
+                }
+              },
+            );
+          },
+          child: Text(context.l10n.not_ok),
+        ),
+        TextButton(
+          onPressed: () => Navigator.of(context).pop(),
+          child: Text(context.l10n.ok),
+        ),
+      ],
+    );
+  }
+}

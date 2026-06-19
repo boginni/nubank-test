@@ -1,0 +1,78 @@
+name: portfolio
+description: "A new Flutter project."
+
+publish_to: 'none'
+
+version: 1.0.5+6
+
+workspace:
+  - packages/ds_assets
+
+environment:
+  sdk: ^3.7.2
+
+
+
+#dependency_overrides:
+#  flutter_purple_impl:
+#    path: packages/flutter_purple_impl
+
+dependencies:
+  flutter:
+    sdk: flutter
+  intl: any
+
+  custom_go_router:
+    path: packages/custom_go_router
+
+  ds_assets:
+    path: packages/ds_assets
+
+  flutter_purple_domains:
+    git: https://github.com/boginni/flutter_purple_domains.git
+    version: 0.0.2
+
+  flutter_purple_impl:
+    git: https://github.com/boginni/flutter_purple_impl.git
+    version: 0.1.0
+
+  error_handler_with_result: ^1.0.0
+  timelines_plus: ^2.0.0
+  flutter_localization: ^0.3.3
+  cupertino_icons: ^1.0.8
+  flutter_svg: ^2.2.3
+  sqflite: ^2.3.2
+  dio: ^5.4.1
+  google_fonts: ^8.0.2
+  firebase_auth: ^6.1.4
+  firebase_core: ^4.4.0
+  shared_preferences: ^2.2.2
+  http: ^1.2.1
+  firebase_crashlytics: ^5.0.7
+  path: ^1.9.0
+
+  cached_network_image: ^3.4.1
+  #  open_mail_app: ^0.4.5
+  skeletons: ^0.0.3
+  validatorless: ^1.2.3
+  cross_file: ^0.3.4+2
+  google_maps_flutter: ^2.12.3
+  geolocator: ^14.0.1
+  flutter_polyline_points: ^3.1.0
+  vector_math: ^2.1.4
+  get_it: ^9.2.1
+  flutter_widget_from_html: ^0.17.1
+  printing: ^5.14.2
+  html_to_pdf_plus: ^1.0.7
+
+  crypto: any
+  go_router: any
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+
+  flutter_lints: ^6.0.0
+
+flutter:
+  generate: true
+  uses-material-design: true

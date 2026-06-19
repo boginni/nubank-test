@@ -1,0 +1,103 @@
+import 'package:ds_assets/ds_assets.dart';
+import 'package:flutter/material.dart';
+
+import '../../../../../domain/dto/entities/resume_skills_entity.dart';
+import '../../../../app/extensions/context_extensions.dart';
+
+class SkillsPageWideSuccessState extends StatelessWidget {
+  const SkillsPageWideSuccessState({
+    super.key,
+    required this.entity,
+  });
+
+  final ResumeSkillsEntity entity;
+
+  @override
+  Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    final colorScheme = theme.colorScheme;
+    final textTheme = theme.textTheme;
+
+    return Container(
+      constraints: const BoxConstraints(
+        maxWidth: 1440,
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          Container(
+            padding: const EdgeInsets.symmetric(
+              horizontal: 16 * 2,
+            ),
+            child: Column(
+              children: [
+                const Divider(),
+                const SizedBox(
+                  height: 16 * 2,
+                ),
+                Row(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Expanded(
+                      flex: 2,
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          SelectableText(
+                            context.l10n.skills,
+                            style: textTheme.headlineMedium?.copyWith(),
+                          ),
+                          // SelectableText(
+                          //   'Background Skills and\nAccomplishments',
+                          //   style: textTheme.headlineSmall?.copyWith(),
+                          // ),
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
+              ],
+            ),
+          ),
+          const SizedBox(height: 16 * 3),
+          Wrap(
+            spacing: 16,
+            runSpacing: 16,
+            alignment: WrapAlignment.center,
+            children:
+                entity.technologies.map(
+                  (e) {
+                    const size = 16 * 6.0;
+
+                    return Card(
+                      child: Padding(
+                        padding: const EdgeInsets.all(
+                          size * .33,
+                        ),
+                        child: Column(
+                          children: [
+                            Image.asset(
+                              DsAssetsIcons.path() + e.icon,
+                              width: size,
+                              height: size,
+                              color: colorScheme.primary,
+                            ),
+                            const SizedBox(
+                              height: 8,
+                            ),
+                            SelectableText(
+                              e.name,
+                              style: textTheme.titleLarge?.copyWith(),
+                            ),
+                          ],
+                        ),
+                      ),
+                    );
+                  },
+                ).toList(),
+          ),
+        ],
+      ),
+    );
+  }
+}
