@@ -3,7 +3,7 @@ import 'dart:io';
 
 void main() {
   const assetDir = './assets';
-  const packageName = 'ds_assets';
+  const packageName = 'nu_assets';
   const outputDir = 'lib';
   const srcDir = '$outputDir/src';
 
@@ -26,12 +26,12 @@ void main() {
 
   for (final subDir in subDirs) {
     final folderName = subDir.uri.pathSegments.reversed.elementAt(1);
-    final className = 'DsAssets${_capitalize(folderName)}';
-    final dartFileName = 'ds_assets_$folderName.dart';
+    final className = 'NuAssets${_capitalize(folderName)}';
+    final dartFileName = 'nu_assets_$folderName.dart';
 
     final buffer = StringBuffer();
     buffer.writeln('// GENERATED CODE - DO NOT MODIFY BY HAND');
-    buffer.writeln("import '../const.dart';\n");
+    buffer.writeln("import 'const.dart';\n");
     buffer.writeln('class $className {');
     buffer.writeln('  const $className._();\n');
     buffer.writeln("  static const _prefix = 'packages/\$packageName';\n");
@@ -110,7 +110,7 @@ void main() {
     barrelBuffer.writeln("export 'src/$file';");
   }
 
-  File('$outputDir/ds_assets.dart').writeAsStringSync(barrelBuffer.toString());
+  File('$outputDir/nu_assets.dart').writeAsStringSync(barrelBuffer.toString());
   print('\n✅ Asset sync and generation complete.');
 }
 
