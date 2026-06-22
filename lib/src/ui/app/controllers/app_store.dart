@@ -1,6 +1,5 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:vector_math/vector_math.dart';
 
 class AppStore extends ChangeNotifier implements ValueListenable<AppStore> {
   AppStore();
@@ -11,8 +10,6 @@ class AppStore extends ChangeNotifier implements ValueListenable<AppStore> {
   ThemeMode? _themeMode;
 
   Locale? _locale;
-
-  Vector2? initialPosition;
 
   ThemeMode? get themeMode => _themeMode;
 

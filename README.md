@@ -2,6 +2,17 @@
 
 Esse projeto é um teste técnico para qualificação no processo seletivo do Nubank.
 
+## Exemplo de Execução
+
+<details>
+  <summary><b>Clique aqui para ver o vídeo de demonstração</b></summary>
+
+  <br>
+
+<video src="./docs/example_run.mp4" width="600" controls></video>
+
+</details>
+
 ## Tecnologias
 
 - **Flutter** - Escolhi porque é a tecnologia na qual sou especialista. Mas, dando uma visão
@@ -42,6 +53,10 @@ para a execução.
 
 1. Rode o comando do Flutter (ele resolverá as dependências sozinho):
    `flutter run`
+
+2. Se os arquivos de internacionalização não forem gerados, force a geração manual:
+   `cd packages/nu_l10n`
+   `flutter gen-l10n`
 
 ## Executando os Testes
 
