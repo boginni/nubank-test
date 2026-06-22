@@ -39,6 +39,7 @@ class HomeHeaderComponent extends StatelessWidget {
                     builder: (context, value, child) {
                       return TextFormField(
                         readOnly: isLoading,
+                        enabled: !isLoading,
                         controller: urlController,
                         validator: validator,
                         keyboardType: .multiline,

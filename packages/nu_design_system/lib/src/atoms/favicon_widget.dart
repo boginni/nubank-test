@@ -1,6 +1,6 @@
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:nu_assets/nu_assets.dart';
+
+import 'place_holder_image.dart';
 
 class FaviconImage extends StatelessWidget {
   final String? url;
@@ -54,46 +54,33 @@ class FaviconImage extends StatelessWidget {
     );
 
     if (favicon == null) {
-      return const PlaceHolderImage();
+      return PlaceHolderImage(
+        size: size,
+      );
     }
 
     return ClipRRect(
       borderRadius: BorderRadius.circular(size * 0.15),
-      child: CachedNetworkImage(
-        imageUrl: favicon,
+      child: Image.network(
+        favicon,
         width: size,
         height: size,
         fit: BoxFit.contain,
-        placeholder: (context, url) => SizedBox(
-          width: size,
-          height: size,
-          child: const Center(
-            child: CircularProgressIndicator(strokeWidth: 2),
-          ),
-        ),
-        errorWidget: (context, url, error) => PlaceHolderImage(
-          size: size,
-        ),
+        errorBuilder: (context, error, stackTrace) {
+          return PlaceHolderImage(
+            size: size,
+          );
+        },
+        loadingBuilder: (context, child, loadingProgress) {
+          if (loadingProgress == null) {
+            return child;
+          }
+
+          return PlaceHolderImage(
+            size: size,
+          );
+        },
       ),
-    );
-  }
-}
-
-class PlaceHolderImage extends StatelessWidget {
-  const PlaceHolderImage({
-    super.key,
-    this.size,
-  });
-
-  final double? size;
-
-  @override
-  Widget build(BuildContext context) {
-    return Image.asset(
-      NuAssetsResources.placeholderImagePng,
-      width: size,
-      height: size,
-      fit: BoxFit.contain,
     );
   }
 }

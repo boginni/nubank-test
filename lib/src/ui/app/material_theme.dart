@@ -4,11 +4,16 @@ import 'package:google_fonts/google_fonts.dart';
 class MaterialTheme {
   const MaterialTheme();
 
-  ThemeData getTheme(ThemeData base) {
+  ThemeData getTheme(
+    ThemeData base, {
+    bool usesCustomFont = true,
+  }) {
     final colorScheme = base.colorScheme;
 
     return base.copyWith(
-      textTheme: GoogleFonts.poppinsTextTheme(base.textTheme),
+      textTheme: usesCustomFont
+          ? GoogleFonts.poppinsTextTheme(base.textTheme)
+          : base.textTheme,
       appBarTheme: const AppBarTheme(
         elevation: 0,
       ),
