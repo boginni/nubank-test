@@ -48,7 +48,7 @@ class _AppWidgetState extends State<AppWidget> {
       valueListenable: widget.controller.store,
       builder: (context, value, child) {
         return MaterialApp.router(
-          title: 'Brunno França',
+          title: 'Nu Test',
           locale: value.locale,
           theme: lightTheme,
           darkTheme: darkTheme,

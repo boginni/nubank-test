@@ -7,16 +7,14 @@ class ShortenHistoryLoadingComponent extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return CustomScrollView(
+    return const CustomScrollView(
       slivers: [
         SliverPadding(
-          padding: const .symmetric(horizontal: 16),
-          sliver: SliverList.builder(
-            itemBuilder: (context, int index) {
-              return const ListTile(
-                title: Text('title'),
-              );
-            },
+          padding: .symmetric(horizontal: 16),
+          sliver: SliverFillRemaining(
+            child: Center(
+              child: CircularProgressIndicator(),
+            ),
           ),
         ),
       ],

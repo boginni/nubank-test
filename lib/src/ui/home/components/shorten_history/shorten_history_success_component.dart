@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:nu_l10n/nu_l10n.dart';
 
 import '../../../../domain/dto/entities/shortened_url_entity.dart';
 import '../../../app/extensions/context_extensions.dart';
@@ -23,7 +24,7 @@ class ShortenHistoryComponent extends StatelessWidget {
           sliver: SliverToBoxAdapter(
             child: Center(
               child: Text(
-                'Mostrando ${entities.length} Resultados',
+                context.l10n.showing_x_history(entities.length),
                 style: context.textTheme.titleMedium?.copyWith(
                   letterSpacing: 1.5,
                 ),
@@ -60,9 +61,9 @@ class ShortenHistoryComponent extends StatelessWidget {
             },
           ),
         ),
-        const SliverFillRemaining(
+        SliverFillRemaining(
           child: Center(
-            child: Text('Fim da lista'),
+            child: Text(context.l10n.end_of_history),
           ),
         ),
       ],

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:nu_l10n/nu_l10n.dart';
 
 class ShortenHistoryEmptyComponent extends StatelessWidget {
   const ShortenHistoryEmptyComponent({
@@ -7,11 +8,11 @@ class ShortenHistoryEmptyComponent extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const CustomScrollView(
+    return CustomScrollView(
       slivers: [
         SliverFillRemaining(
           child: Center(
-            child: Text('Empty'),
+            child: Text(context.l10n.empty),
           ),
         ),
       ],

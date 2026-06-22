@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:vector_math/vector_math.dart';
 
 extension ContextExtension on BuildContext {
   ThemeData get theme => Theme.of(this);
@@ -19,53 +18,4 @@ extension ContextExtension on BuildContext {
   MediaQueryData get mediaQuery => MediaQuery.of(this);
 
   NavigatorState get navigator => Navigator.of(this);
-
-  void runIfMounted(VoidCallback fn) {
-    if (mounted) {
-      fn();
-    }
-  }
-}
-
-extension ChangeNotifierExtension on Listenable {
-  void addListenerPage(void Function(VoidCallback fn) setState) {
-    addListener(() => setState(() {}));
-  }
-
-  void addListenerState(State state) {
-    WidgetsBinding.instance.addPostFrameCallback((_) {
-      // ignore: invalid_use_of_protected_member
-      addListener(() => state.setState(() {}));
-    });
-  }
-}
-
-extension SizeExtensions on Size {
-  Size withPadding({
-    double horizontal = 0.0,
-    double vertical = 0.0,
-  }) {
-    return Size(
-      width - horizontal,
-      height - vertical,
-    );
-  }
-
-  Vector2 toVector2() {
-    return Vector2(width, height);
-  }
-}
-
-extension DurationFormatting on Duration {
-  String formatHMS(BuildContext context) {
-    final hours = inHours;
-    final minutes = inMinutes.remainder(60);
-    final seconds = inSeconds.remainder(60);
-
-    if (hours > 0) {
-      return '$hours:${minutes.toString().padLeft(2, '0')}:${seconds.toString().padLeft(2, '0')}';
-    }
-
-    return '${minutes.toString().padLeft(2, '0')}:${seconds.toString().padLeft(2, '0')}';
-  }
 }

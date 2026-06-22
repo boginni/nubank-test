@@ -1,5 +1,6 @@
 import 'package:error_handler_with_result/error_handler_with_result.dart';
 import 'package:flutter/material.dart';
+import 'package:nu_l10n/nu_l10n.dart';
 
 import '../../../domain/dto/entities/shortened_url_entity.dart';
 import '../components/home_header_component.dart';
@@ -50,7 +51,7 @@ class _HomePageState extends State<HomePage> {
 
   String? urlValidator(String? value) {
     if (value?.isEmpty ?? true) {
-      return 'Url nao pode ser vazia';
+      return context.l10n.url_cannot_be_empty;
     }
 
     return null;
@@ -58,14 +59,14 @@ class _HomePageState extends State<HomePage> {
 
   String failureToString(Failure value) {
     if (value is ClientServerFailure) {
-      return 'Url enviada eh invalida';
+      return context.l10n.sent_url_is_invalid;
     }
 
     if (value is TimeoutFailure) {
-      return 'Servidor n~ao respondeu';
+      return context.l10n.server_response_took_too_long;
     }
 
-    return 'Erro desconhecido';
+    return context.l10n.unknown_error;
   }
 
   Future<void> onTapEntity(ShortenedUrlEntity entity) async {
@@ -77,7 +78,9 @@ class _HomePageState extends State<HomePage> {
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
           content: Text(
-            result.isFailure ? 'Erro Ao copiar url' : 'Url Copiada',
+            result.isFailure
+                ? context.l10n.error_while_trying_to_copy_url
+                : context.l10n.url_copied_successfully,
           ),
         ),
       );
@@ -92,7 +95,7 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Nu test'),
+        title: Text(context.l10n.nu_test),
       ),
       body: ListenableBuilder(
         listenable: Listenable.merge([
