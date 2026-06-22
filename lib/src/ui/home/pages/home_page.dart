@@ -60,7 +60,7 @@ class _HomePageState extends State<HomePage> {
               ),
             ),
             SliverPadding(
-              padding: .symmetric(horizontal: 16),
+              padding: const .symmetric(horizontal: 16),
               sliver: SliverList.builder(
                 itemBuilder: (context, int index) {
                   return const ListTile(

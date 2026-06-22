@@ -1,8 +1,5 @@
-import 'dart:async';
-
 import 'package:dio/dio.dart';
 
-import '../../domain/services/authorization_service.dart';
 import '../architecture/data_failures.dart';
 
 class DioFailureHandlingInterceptor extends Interceptor {
