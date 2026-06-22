@@ -51,33 +51,48 @@ para o desenvolvimento futuro foram:
 Este projeto foi desenvolvido com foco na versão do Flutter 3.44.0, sendo esta a versão recomendada
 para a execução.
 
-1. Navegue até o pacote de internacionalização e force a geração dos arquivos:
-    ```bash
-       cd packages/nu_l10n
-       flutter gen-l10n
-    ```
+- Resolva as dependencias:
 
-2. Volte para a pasta raiz do projeto:
-    ```bash
-       cd ../..
-    ```
+```bash
+flutter pub get
+```
 
-3. Por fim, rode o projeto (o Flutter resolverá as dependências restantes automaticamente):
-    ```bash
-       flutter run
-    ```
+- Navegue até o pacote de internacionalização e force a geração dos arquivos:
+
+```bash
+cd packages/nu_l10n
+flutter gen-l10n
+```
+
+- Volte para a pasta raiz do projeto:
+
+```bash
+cd ../..
+```
+
+- Rode o projeto:
+
+```bash
+flutter run
+```
 
 ## Executando os Testes
 
 **Aviso**: Os *Golden Tests* foram feitos para serem executados no macOS e podem não funcionar
 corretamente em outras plataformas!
 
-1. Rode os testes principais:
-   `flutter test`
+- Rode os testes principais:
 
-2. Para rodar também os testes do Design System:
-   `cd packages/nu_design_system/`
-   `flutter test`
+```bash
+flutter test
+```
+
+- Para rodar também os testes do Design System:
+
+```bash
+cd packages/nu_design_system/
+flutter test
+```
 
 ## Projetos Similares
 
