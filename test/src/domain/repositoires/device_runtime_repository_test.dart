@@ -21,7 +21,7 @@ void main() {
       const textToCopy = 'test clipboard';
       when(
         () => repository.copyToClipboard(textToCopy),
-      ).thenAnswer((_) async => Result.success(null));
+      ).thenAnswer((_) async => const Result.success(null));
 
       final result = await repository.copyToClipboard(textToCopy);
 
