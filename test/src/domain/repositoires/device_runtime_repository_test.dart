@@ -39,7 +39,7 @@ void main() {
 
       when(
         () => repository.getClipboardData(),
-      ).thenAnswer((_) async => Result.success(clipboardText));
+      ).thenAnswer((_) async => const Result.success(clipboardText));
 
       final result = await repository.getClipboardData();
 

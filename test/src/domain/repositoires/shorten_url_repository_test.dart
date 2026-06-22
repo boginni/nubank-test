@@ -49,7 +49,7 @@ void main() {
   test(
     'given valid id when getShortenedUrlById is called then returns corresponding entity',
     () async {
-      final id = 123;
+      const id = 123;
       final expectedEntity = FakeShortenedUrlEntity();
       when(
         () => repository.getShortenedUrlById(id),

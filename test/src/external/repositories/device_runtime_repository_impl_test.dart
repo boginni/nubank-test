@@ -4,10 +4,6 @@ import 'package:mocktail/mocktail.dart';
 import 'package:nubank_test/src/external/datasources/device_runtime_datasource.dart';
 import 'package:nubank_test/src/external/repositories/device_runtime_repository_impl.dart';
 
-// Import your actual files here
-// import '../../domain/repositories/device_runtime_repository.dart';
-// import '../datasources/device_runtime_datasource.dart';
-
 class MockDeviceRuntimeDatasource extends Mock
     implements DeviceRuntimeDatasource {}
 
@@ -26,16 +22,13 @@ void main() {
       'when copyToClipboard is called '
       'then returns a successful Result',
       () async {
-        // Arrange
         const tText = 'test string';
         when(
           () => mockDatasource.copyToClipboard(tText),
         ).thenAnswer((_) async {});
 
-        // Act
         final result = await repository.copyToClipboard(tText);
 
-        // Then
         expect(result.isSuccess, isTrue);
         verify(() => mockDatasource.copyToClipboard(tText)).called(1);
         verifyNoMoreInteractions(mockDatasource);
@@ -47,16 +40,13 @@ void main() {
       'when copyToClipboard is called '
       'then returns a failure Result',
       () async {
-        // Arrange
         const tText = 'test string';
         when(
           () => mockDatasource.copyToClipboard(tText),
         ).thenThrow(const TestFailure());
 
-        // Act
         final result = await repository.copyToClipboard(tText);
 
-        // Then
         expect(result.isFailure, isTrue);
         expect(result.failure, isA<TestFailure>());
         verify(() => mockDatasource.copyToClipboard(tText)).called(1);
@@ -71,16 +61,13 @@ void main() {
       'when getClipboardData is called '
       'then returns successful Result with clipboard string',
       () async {
-        // Arrange
         const tClipboardData = 'copied text';
         when(
           () => mockDatasource.getClipboardData(),
         ).thenAnswer((_) async => tClipboardData);
 
-        // Act
         final result = await repository.getClipboardData();
 
-        // Then
         expect(result.isSuccess, isTrue);
         expect(result.success, tClipboardData);
         verify(() => mockDatasource.getClipboardData()).called(1);
@@ -93,15 +80,12 @@ void main() {
       'when getClipboardData is called '
       'then returns a failure Result',
       () async {
-        // Arrange
         when(
           () => mockDatasource.getClipboardData(),
         ).thenThrow(const TestFailure());
 
-        // Act
         final result = await repository.getClipboardData();
 
-        // Then
         expect(result.isFailure, isTrue);
         expect(result.failure, isA<TestFailure>());
         verify(() => mockDatasource.getClipboardData()).called(1);

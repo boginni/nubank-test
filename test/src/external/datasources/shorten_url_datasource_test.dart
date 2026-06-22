@@ -38,10 +38,8 @@ void main() {
       'when shortenUrl is called '
       'then returns shortened url entity',
       () async {
-        // Arrange
         const tParams = ShortenUrlParamsEntity(url: 'https://example.com');
 
-        // Ensure this JSON matches what ShortenedUrlModel.fromJson expects
         final tResponseData = {
           'id': 1,
           'alias': 'test_alias',
@@ -58,10 +56,8 @@ void main() {
         ).thenAnswer((_) async => tResponse);
         when(() => mockStorageProvider.save(any())).thenAnswer((_) async {});
 
-        // Act
         final result = await datasource.shortenUrl(tParams);
 
-        // Then
         expect(result, isA<ShortenedUrlEntity>());
         verify(
           () => mockDio.post('/alias', data: any(named: 'data')),
@@ -77,7 +73,6 @@ void main() {
       'when shortenUrl is called '
       'then throws an exception',
       () async {
-        // Arrange
         const tParams = ShortenUrlParamsEntity(url: 'https://example.com');
 
         final tException = Exception('Http Error');
@@ -86,7 +81,6 @@ void main() {
           () => mockDio.post(any(), data: any(named: 'data')),
         ).thenThrow(tException);
 
-        // Act & Then
         expect(
           () => datasource.shortenUrl(tParams),
           throwsA(isA<Exception>()),
@@ -105,10 +99,8 @@ void main() {
       'when getShortenedUrlById is called '
       'then returns shortened url entity',
       () async {
-        // Arrange
         const tId = 1;
 
-        // Ensure this JSON matches what ShortenedUrlModel.fromJson expects
         final tResponseData = {
           'id': tId,
           'alias': 'test_alias',
@@ -122,10 +114,8 @@ void main() {
 
         when(() => mockDio.get(any())).thenAnswer((_) async => tResponse);
 
-        // Act
         final result = await datasource.getShortenedUrlById(tId);
 
-        // Then
         expect(result, isA<ShortenedUrlEntity>());
         verify(() => mockDio.get('/alias/$tId')).called(1);
         verifyNoMoreInteractions(mockDio);
@@ -139,7 +129,6 @@ void main() {
       'when getShortenedUrlHistory is called '
       'then returns list of shortened url entities from storage',
       () async {
-        // Arrange
         const tParams = GetShortenedUrlHistoryParamsEntity();
 
         final tList = [
@@ -154,10 +143,8 @@ void main() {
           () => mockStorageProvider.getHistory(any()),
         ).thenAnswer((_) async => tList);
 
-        // Act
         final result = await datasource.getShortenedUrlHistory(tParams);
 
-        // Then
         expect(result, tList);
         verify(() => mockStorageProvider.getHistory(tParams)).called(1);
         verifyNoMoreInteractions(mockStorageProvider);
@@ -169,7 +156,6 @@ void main() {
       'when getShortenedUrlHistory is called '
       'then returns list using default params',
       () async {
-        // Arrange
         final tList = [
           const ShortenedUrlEntity(
             url: 'https://test.com',
@@ -182,10 +168,8 @@ void main() {
           () => mockStorageProvider.getHistory(any()),
         ).thenAnswer((_) async => tList);
 
-        // Act
         final result = await datasource.getShortenedUrlHistory();
 
-        // Then
         expect(result, tList);
         verify(() => mockStorageProvider.getHistory(any())).called(1);
         verifyNoMoreInteractions(mockStorageProvider);

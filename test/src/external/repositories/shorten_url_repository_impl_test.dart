@@ -6,12 +6,6 @@ import 'package:nubank_test/src/domain/dto/params/shorten_url_params_entity.dart
 import 'package:nubank_test/src/external/datasources/shorten_url_datasource.dart';
 import 'package:nubank_test/src/external/repositories/shorten_url_repository_impl.dart';
 
-// Import your actual files here
-// import '../../domain/dto/entities/shortened_url_entity.dart';
-// import '../../domain/dto/params/shorten_url_params_entity.dart';
-// import '../../domain/repositories/shorten_url_repository.dart';
-// import '../datasources/shorten_url_datasource.dart';
-
 class MockShortenUrlDatasource extends Mock implements ShortenUrlDatasource {}
 
 class MockShortenedUrlEntity extends Mock implements ShortenedUrlEntity {}
@@ -37,17 +31,14 @@ void main() {
       'when getRecentlyShortenedUrls is called '
       'then returns list of shortened url entities',
       () async {
-        // Arrange
         final tParams = MockGetShortenedUrlHistoryParamsEntity();
         final tList = [MockShortenedUrlEntity()];
         when(
           () => mockDatasource.getShortenedUrlHistory(tParams),
         ).thenAnswer((_) async => tList);
 
-        // Act
         final result = await repository.getRecentlyShortenedUrls(tParams);
 
-        // Then
         expect(result.isSuccess, isTrue);
         expect(result.success, tList);
         verify(() => mockDatasource.getShortenedUrlHistory(tParams)).called(1);
@@ -60,16 +51,13 @@ void main() {
       'when getRecentlyShortenedUrls is called '
       'then returns a failure Result',
       () async {
-        // Arrange
         final tParams = MockGetShortenedUrlHistoryParamsEntity();
         when(
           () => mockDatasource.getShortenedUrlHistory(tParams),
         ).thenThrow(const TestFailure());
 
-        // Act
         final result = await repository.getRecentlyShortenedUrls(tParams);
 
-        // Then
         expect(result.isFailure, isTrue);
         expect(result.failure, isA<TestFailure>());
         verify(() => mockDatasource.getShortenedUrlHistory(tParams)).called(1);
@@ -84,17 +72,14 @@ void main() {
       'when getShortenedUrlById is called '
       'then returns shortened url entity',
       () async {
-        // Arrange
         const tId = 1;
         final tEntity = MockShortenedUrlEntity();
         when(
           () => mockDatasource.getShortenedUrlById(tId),
         ).thenAnswer((_) async => tEntity);
 
-        // Act
         final result = await repository.getShortenedUrlById(tId);
 
-        // Then
         expect(result.isSuccess, isTrue);
         expect(result.success, tEntity);
         verify(() => mockDatasource.getShortenedUrlById(tId)).called(1);
@@ -107,16 +92,13 @@ void main() {
       'when getShortenedUrlById is called '
       'then returns a failure Result',
       () async {
-        // Arrange
         const tId = 1;
         when(
           () => mockDatasource.getShortenedUrlById(tId),
         ).thenThrow(const TestFailure());
 
-        // Act
         final result = await repository.getShortenedUrlById(tId);
 
-        // Then
         expect(result.isFailure, isTrue);
         expect(result.failure, isA<TestFailure>());
         verify(() => mockDatasource.getShortenedUrlById(tId)).called(1);
@@ -131,17 +113,14 @@ void main() {
       'when shortenUrl is called '
       'then returns shortened url entity',
       () async {
-        // Arrange
         final tParams = MockShortenUrlParamsEntity();
         final tEntity = MockShortenedUrlEntity();
         when(
           () => mockDatasource.shortenUrl(tParams),
         ).thenAnswer((_) async => tEntity);
 
-        // Act
         final result = await repository.shortenUrl(tParams);
 
-        // Then
         expect(result.isSuccess, isTrue);
         expect(result.success, tEntity);
         verify(() => mockDatasource.shortenUrl(tParams)).called(1);
@@ -154,16 +133,13 @@ void main() {
       'when shortenUrl is called '
       'then returns a failure Result',
       () async {
-        // Arrange
         final tParams = MockShortenUrlParamsEntity();
         when(
           () => mockDatasource.shortenUrl(tParams),
         ).thenThrow(const TestFailure());
 
-        // Act
         final result = await repository.shortenUrl(tParams);
 
-        // Then
         expect(result.isFailure, isTrue);
         expect(result.failure, isA<TestFailure>());
         verify(() => mockDatasource.shortenUrl(tParams)).called(1);
