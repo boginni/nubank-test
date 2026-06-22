@@ -9,7 +9,7 @@ Esse projeto é um teste técnico para qualificação no processo seletivo do Nu
 
   <br>
 
-<video src="./docs/example_run.mp4" width="600" controls></video>
+<video src="https://github.com/user-attachments/assets/d093af70-7e89-4f97-b9b9-0c44a59ad096" width="600" controls></video>
 
 </details>
 
