@@ -23,18 +23,13 @@ abstract class Failure implements Exception {
   }
 }
 
+abstract class TimeoutFailure implements Failure {}
+
 class SerializationFailure extends Failure {
   const SerializationFailure(this.error, StackTrace stackTrace)
     : super(stackTrace);
 
   final dynamic error;
-
-  @override
-  bool get isFatal => true;
-}
-
-class UnauthorizedFailure extends Failure {
-  const UnauthorizedFailure(super.stackTrace);
 
   @override
   bool get isFatal => true;

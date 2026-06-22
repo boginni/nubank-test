@@ -3,6 +3,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:nu_l10n/nu_l10n.dart';
 import 'app_dependencies.dart';
 import 'components/global_context_provider.dart';
+import 'components/inverse_brightness_builder.dart';
 import 'controllers/app_controller.dart';
 import 'material_theme.dart';
 
@@ -59,7 +60,11 @@ class _AppWidgetState extends State<AppWidget> {
           localizationsDelegates: NuL10n.localizationsDelegates,
           routerConfig: widget.controller.appRoutes.routes,
           builder: (context, child) => GlobalContextProviderWidget(
-            child: child ?? const Offstage(),
+            child: ThemeRegistry(
+              lightTheme: lightTheme,
+              darkTheme: darkTheme,
+              child: child ?? const Offstage(),
+            ),
           ),
         );
       },

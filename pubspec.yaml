@@ -33,15 +33,13 @@ dependencies:
   flutter_svg: ^2.2.3
   dio: ^5.4.1
   google_fonts: ^8.0.2
-  firebase_auth: ^6.1.4
-  firebase_core: ^4.4.0
   shared_preferences: ^2.2.2
   path: ^1.9.0
   cached_network_image: ^3.4.1
   validatorless: ^1.2.3
   get_it: ^9.2.1
   crypto: any
-
+  url_launcher: ^6.3.2
 
 dev_dependencies:
   flutter_test:

@@ -35,9 +35,42 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
-      body: Center(
-        child: Text('Home Page'),
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('Nu Test'),
+      ),
+      body: SafeArea(
+        child: CustomScrollView(
+          slivers: [
+            SliverPadding(
+              padding: const .all(16),
+              sliver: SliverToBoxAdapter(
+                child: Row(
+                  spacing: 8,
+                  children: [
+                    Expanded(
+                      child: TextFormField(),
+                    ),
+                    IconButton(
+                      onPressed: () {},
+                      icon: const Icon(Icons.send),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+            SliverPadding(
+              padding: .symmetric(horizontal: 16),
+              sliver: SliverList.builder(
+                itemBuilder: (context, int index) {
+                  return const ListTile(
+                    title: Text('title'),
+                  );
+                },
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }
