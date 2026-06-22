@@ -57,23 +57,19 @@ para a execução.
 flutter pub get
 ```
 
-- Navegue até o pacote de internacionalização e force a geração dos arquivos:
-
-```bash
-cd packages/nu_l10n
-flutter gen-l10n
-```
-
-- Volte para a pasta raiz do projeto:
-
-```bash
-cd ../..
-```
-
 - Rode o projeto:
 
 ```bash
 flutter run
+```
+
+- Se você encontrar algum erro indicando a ausência das classes de localização, force a geração
+  manualmente executando:
+
+```bash
+cd packages/nu_l10n
+flutter gen-l10n
+cd ../..
 ```
 
 ## Executando os Testes
