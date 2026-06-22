@@ -1,8 +1,14 @@
+import 'package:error_handler_with_result/error_handler_with_result.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 
 class HomeStore extends ChangeNotifier
     implements ValueListenable<HomeStoreState> {
-  HomeStoreState _state = HomeStoreState.initial();
+  final formKey = GlobalKey<FormState>();
+
+  final urlController = TextEditingController();
+
+  HomeStoreState _state = HomeStoreState.success();
 
   HomeStoreState get state => _state;
 
@@ -18,17 +24,11 @@ class HomeStore extends ChangeNotifier
 sealed class HomeStoreState {
   const HomeStoreState();
 
-  factory HomeStoreState.initial() = HomeStoreInitialState;
-
   factory HomeStoreState.loading() = HomeStoreLoadingState;
 
-  factory HomeStoreState.failure() = HomeStoreFailureState;
+  factory HomeStoreState.failure(Failure failure) = HomeStoreFailureState;
 
   factory HomeStoreState.success() = HomeStoreSuccessState;
-}
-
-class HomeStoreInitialState extends HomeStoreState {
-  const HomeStoreInitialState();
 }
 
 class HomeStoreLoadingState extends HomeStoreState {
@@ -36,7 +36,9 @@ class HomeStoreLoadingState extends HomeStoreState {
 }
 
 class HomeStoreFailureState extends HomeStoreState {
-  const HomeStoreFailureState();
+  const HomeStoreFailureState(this.failure);
+
+  final Failure failure;
 }
 
 class HomeStoreSuccessState extends HomeStoreState {

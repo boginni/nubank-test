@@ -1,10 +1,13 @@
 import 'package:dio/dio.dart';
 import 'package:get_it/get_it.dart';
-import '../../domain/environment.dart';
+
+import '../../domain/repositories/device_runtime_repository.dart';
 import '../../domain/repositories/shorten_url_repository.dart';
+import '../../external/datasources/device_runtime_datasource.dart';
 import '../../external/datasources/shorten_url_datasource.dart';
 import '../../external/interceptors/dio_failure_handling_interceptor.dart';
 import '../../external/provider/shorten_url_history_provider.dart';
+import '../../external/repositories/device_runtime_repository_impl.dart';
 import '../../external/repositories/shorten_url_repository_impl.dart';
 import 'controllers/app_store.dart';
 
@@ -16,14 +19,7 @@ class AppDependencies {
   }
 
   static void _init(GetIt i) {
-    final dio = Dio(
-      BaseOptions(
-        baseUrl: Environment.baseUrl,
-        connectTimeout: const Duration(seconds: 10),
-        receiveTimeout: const Duration(seconds: 15),
-        sendTimeout: const Duration(seconds: 5),
-      ),
-    );
+    final dio = Dio();
 
     dio.interceptors.add(DioFailureHandlingInterceptor());
 
@@ -35,6 +31,16 @@ class AppDependencies {
     i.registerFactory(
       () => ShortenUrlDatasource(
         dio,
+        i.get(),
+      ),
+    );
+
+    i.registerFactory(
+      () => const DeviceRuntimeDatasource(),
+    );
+
+    i.registerFactory<DeviceRuntimeRepository>(
+      () => DeviceRuntimeRepositoryImpl(
         i.get(),
       ),
     );

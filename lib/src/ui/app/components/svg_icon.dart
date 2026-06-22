@@ -21,10 +21,9 @@ class SvgIcon extends StatelessWidget {
 
     return SvgPicture.asset(
       assetName,
-      colorFilter:
-          resolvedColor != null
-              ? ColorFilter.mode(resolvedColor, BlendMode.srcIn)
-              : null,
+      colorFilter: resolvedColor != null
+          ? ColorFilter.mode(resolvedColor, BlendMode.srcIn)
+          : null,
       width: resolvedSize,
       height: resolvedSize,
     );

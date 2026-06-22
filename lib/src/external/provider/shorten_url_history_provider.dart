@@ -14,6 +14,10 @@ class ShortenUrlHistoryProvider {
   Future<List<ShortenedUrlEntity>> getHistory(
     GetShortenedUrlHistoryParamsEntity params,
   ) async {
+    if (shortenedUrlCache.length < params.limit) {
+      return shortenedUrlCache;
+    }
+
     return shortenedUrlCache.sublist(0, params.limit);
   }
 

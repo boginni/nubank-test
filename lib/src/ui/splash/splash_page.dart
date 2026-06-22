@@ -3,7 +3,6 @@ import 'dart:async';
 import 'package:custom_go_router/custom_go_router.dart';
 import 'package:flutter/material.dart';
 
-import '../app/extensions/context_extensions.dart';
 import '../shell/shell_routes.dart';
 import 'splash_controller.dart';
 import 'splash_store.dart';
@@ -36,9 +35,8 @@ class _SplashPageState extends State<SplashPage> {
   }
 
   Future<void> initialize() async {
-    store.state = SplashStoreLoadingState();
     try {
-      await controller.appController.loadPreferences();
+      await controller.appController.init();
     } finally {
       await navigate();
     }
@@ -54,82 +52,10 @@ class _SplashPageState extends State<SplashPage> {
       listenable: store,
       builder: (context, child) {
         return Scaffold(
-          backgroundColor: context.colorScheme.surface,
           body: SafeArea(
             child: switch (store.state) {
-              SplashStoreLoadingState() => const Stack(
-                children: [],
-              ),
-              SplashStorePermissionFailureState() => Stack(
-                children: [
-                  Positioned(
-                    bottom: 80,
-                    left: 16,
-                    right: 16,
-                    child: Center(
-                      child: Column(
-                        mainAxisSize: MainAxisSize.min,
-                        children: [
-                          const SizedBox(height: 8),
-                          FilledButton(
-                            onPressed: initialize,
-                            child: const SelectableText('x'),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-              SplashStoreFailToGetLocationState() => Stack(
-                children: [
-                  Positioned(
-                    bottom: 80,
-                    left: 16,
-                    right: 16,
-                    child: Center(
-                      child: Column(
-                        mainAxisSize: MainAxisSize.min,
-                        children: [
-                          const SizedBox(height: 8),
-                          FilledButton(
-                            onPressed: initialize,
-                            child: const SelectableText('x'),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-              SplashStorePermissionDeniedForeverState() => Stack(
-                children: [
-                  Positioned(
-                    bottom: 80,
-                    left: 16,
-                    right: 16,
-                    child: Center(
-                      child: Column(
-                        mainAxisSize: MainAxisSize.min,
-                        children: [
-                          SelectableText(
-                            'Permissão negada permanentemente.',
-                            style: context.textTheme.titleMedium,
-                          ),
-                          const SizedBox(height: 8),
-                          const SelectableText(
-                            'Por favor, habilite as permissões nas configurações',
-                          ),
-                          const SizedBox(height: 16),
-                          FilledButton(
-                            onPressed: initialize,
-                            child: const SelectableText('x'),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
-                ],
+              SplashStoreLoadingState() => const Center(
+                child: CircularProgressIndicator(),
               ),
             },
           ),

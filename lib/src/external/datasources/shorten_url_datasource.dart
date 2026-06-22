@@ -3,6 +3,7 @@ import 'package:dio/dio.dart';
 import '../../domain/dto/entities/shortened_url_entity.dart';
 import '../../domain/dto/params/shorten_url_params_entity.dart';
 import '../dto/models/shortened_url_model.dart';
+import '../dto/params/shorten_url_params_model.dart';
 import '../provider/shorten_url_history_provider.dart';
 
 class ShortenUrlDatasource {
@@ -17,7 +18,10 @@ class ShortenUrlDatasource {
   Future<ShortenedUrlEntity> shortenUrl(
     ShortenUrlParamsEntity params,
   ) async {
-    final response = await dio.post('/alias');
+    final response = await dio.post(
+      '/alias',
+      data: ShortenUrlParamsModel.fromEntity(params).toJson(),
+    );
 
     final model = ShortenedUrlModel.fromJson(response.data);
     await storageProvider.save(model);

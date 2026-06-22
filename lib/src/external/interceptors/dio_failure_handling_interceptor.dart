@@ -1,5 +1,6 @@
 import 'package:dio/dio.dart';
 
+import '../../domain/environment.dart';
 import '../architecture/data_failures.dart';
 
 class DioFailureHandlingInterceptor extends Interceptor {
@@ -7,6 +8,19 @@ class DioFailureHandlingInterceptor extends Interceptor {
 
   bool validateStatus(int? status) {
     return status != null && (status >= 200 && status < 300);
+  }
+
+  @override
+  void onRequest(RequestOptions options, RequestInterceptorHandler handler) {
+    super.onRequest(
+      options.copyWith(
+        baseUrl: Environment.baseUrl,
+        connectTimeout: const Duration(seconds: 5),
+        receiveTimeout: const Duration(seconds: 7),
+        sendTimeout: const Duration(seconds: 5),
+      ),
+      handler,
+    );
   }
 
   @override
@@ -27,7 +41,7 @@ class DioFailureHandlingInterceptor extends Interceptor {
       return handler.next(timeoutFailure);
     }
 
-    final failure = ServerFailure(
+    final failure = DioClientServerFailure(
       requestOptions: err.requestOptions,
       response: err.response,
       stackTrace: err.stackTrace,

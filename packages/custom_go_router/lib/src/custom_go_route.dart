@@ -14,20 +14,20 @@ class CustomGoRoute extends GoRoute {
     super.redirect,
     this.transition,
   }) : super(
-          path: config.fullPath,
-          builder: (BuildContext context, GoRouterState state) {
-            final params = {
-              ...state.pathParameters,
-              ...state.uri.queryParameters,
-            };
+         path: config.fullPath,
+         builder: (BuildContext context, GoRouterState state) {
+           final params = {
+             ...state.pathParameters,
+             ...state.uri.queryParameters,
+           };
 
-            final extra = state.extra;
+           final extra = state.extra;
 
-            return RouteWrapper(
-              config: config,
-              params: params,
-              extra: extra,
-            );
-          },
-        );
+           return RouteWrapper(
+             config: config,
+             params: params,
+             extra: extra,
+           );
+         },
+       );
 }

@@ -49,8 +49,8 @@ class ThemeRegistry extends InheritedWidget {
   static ThemeRegistry of(BuildContext context) {
     final result = context.dependOnInheritedWidgetOfExactType<ThemeRegistry>();
     assert(
-    result != null,
-    'No ThemeRegistry found in context. Wrap your app in one.',
+      result != null,
+      'No ThemeRegistry found in context. Wrap your app in one.',
     );
     return result!;
   }

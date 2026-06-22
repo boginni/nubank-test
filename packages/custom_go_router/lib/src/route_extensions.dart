@@ -63,8 +63,9 @@ extension RouteExtensions on BuildContext {
     bool Function(GoRoute route) predicate, {
     Object? extra,
   }) {
-    final currentConfiguration =
-        GoRouter.of(this).routerDelegate.currentConfiguration;
+    final currentConfiguration = GoRouter.of(
+      this,
+    ).routerDelegate.currentConfiguration;
 
     final routesToPop = currentConfiguration.routes
         .where(
@@ -81,8 +82,9 @@ extension RouteExtensions on BuildContext {
   }
 
   String? getLastRoutePath() {
-    final matchesList =
-        GoRouter.of(this).routerDelegate.currentConfiguration.matches;
+    final matchesList = GoRouter.of(
+      this,
+    ).routerDelegate.currentConfiguration.matches;
 
     if (matchesList.isEmpty) {
       return null;

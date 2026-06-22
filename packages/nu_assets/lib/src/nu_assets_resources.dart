@@ -8,9 +8,10 @@ class NuAssetsResources {
 
   static String path() => '$_prefix/assets/resources/';
 
-  static const String placeholderImagePng = '$_prefix/assets/resources/placeholder_image.png';
+  static const String placeholderImagePng =
+      '$_prefix/assets/resources/placeholder_image.png';
 
   static List<String> values() => [
-        placeholderImagePng,
-      ];
+    placeholderImagePng,
+  ];
 }

@@ -15,19 +15,6 @@ sealed class SplashStoreState {
   const SplashStoreState();
 
   factory SplashStoreState.loading() = SplashStoreLoadingState;
-
-  factory SplashStoreState.failToGetLocation() =
-      SplashStoreFailToGetLocationState;
 }
 
 class SplashStoreLoadingState extends SplashStoreState {}
-
-class SplashStorePermissionFailureState extends SplashStoreState {
-  const SplashStorePermissionFailureState();
-}
-
-class SplashStorePermissionDeniedForeverState extends SplashStoreState {
-  const SplashStorePermissionDeniedForeverState();
-}
-
-class SplashStoreFailToGetLocationState extends SplashStoreState {}

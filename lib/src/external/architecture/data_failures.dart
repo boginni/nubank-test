@@ -1,8 +1,9 @@
 import 'package:dio/dio.dart';
 import 'package:error_handler_with_result/error_handler_with_result.dart';
 
-class ServerFailure extends DioException implements UnknownFailure {
-  ServerFailure({
+class DioClientServerFailure extends DioException
+    implements ClientServerFailure {
+  DioClientServerFailure({
     required super.requestOptions,
     required super.response,
     required super.stackTrace,
@@ -17,9 +18,7 @@ class ServerFailure extends DioException implements UnknownFailure {
   }
 
   @override
-  Never throwError() {
-    throw this;
-  }
+  Never throwError() => resultThrowError(this);
 }
 
 class DioTimeoutFailure extends DioException implements TimeoutFailure {
@@ -38,7 +37,5 @@ class DioTimeoutFailure extends DioException implements TimeoutFailure {
   }
 
   @override
-  Never throwError() {
-    throw this;
-  }
+  Never throwError() => resultThrowError(this);
 }

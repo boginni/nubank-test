@@ -1,13 +1,7 @@
+import 'package:error_handler_with_result/error_handler_with_result.dart';
+
 abstract interface class DeviceRuntimeRepository {
-  Future<void> copyToClipboard(String text);
+  Future<Result<void>> copyToClipboard(String text);
 
-  Future<String?> getClipboardData();
-
-  bool isAndroid();
-
-  bool isIOS();
-
-  Future<int?> getAndroidSdkInt();
-
-  Future<String> getDeviceUuid();
+  Future<Result<String?>> getClipboardData();
 }

@@ -37,7 +37,7 @@ class Result<T> {
 
   final Failure? _failure;
 
-  bool get isSuccess => _success != null;
+  bool get isSuccess => _failure == null;
 
   bool get isFailure => _failure != null;
 

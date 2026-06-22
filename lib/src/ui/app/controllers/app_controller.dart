@@ -12,7 +12,7 @@ class AppController {
     required this.appRoutes,
   });
 
-  Future<void> loadPreferences() async {}
+  Future<void> init() async {}
 
   Future<void> setThemeMode(ThemeMode? themeMode) async {
     if (themeMode == null) {

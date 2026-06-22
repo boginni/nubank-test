@@ -8,6 +8,11 @@ final class Environment {
 
   static const bool isProduction = bool.fromEnvironment('IS_PRODUCTION');
 
+  static const String faviconProxy = String.fromEnvironment(
+    'FAVICON_PROXY',
+    defaultValue: 'https://www.google.com/s2/favicons',
+  );
+
   static String get ciCommitBranch => '';
 
   static String get ciCommitShortSha => '';

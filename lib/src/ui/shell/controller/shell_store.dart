@@ -1,5 +1,4 @@
 import 'package:flutter/foundation.dart';
-import 'package:flutter/material.dart';
 
 class ShellStore extends ChangeNotifier implements ValueListenable<ShellState> {
   ShellStore();
@@ -8,16 +7,7 @@ class ShellStore extends ChangeNotifier implements ValueListenable<ShellState> {
 
   ShellState get state => _state;
 
-  late final PageController pageController = PageController();
-
-  int get pageSelected =>
-      pageController.hasClients ? (pageController.page?.toInt() ?? 0) : 0;
-
   set state(ShellState newState) {
-    if (_state == newState) {
-      return;
-    }
-
     _state = newState;
     notifyListeners();
   }

@@ -1,7 +1,7 @@
 import 'package:flutter/services.dart';
 
-class DeviceDatasource  {
-  const DeviceDatasource();
+class DeviceRuntimeDatasource {
+  const DeviceRuntimeDatasource();
 
   Future<void> copyToClipboard(String text) async {
     await Clipboard.setData(

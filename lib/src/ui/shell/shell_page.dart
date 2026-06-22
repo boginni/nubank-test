@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+
 import '../home/pages/home_page.dart';
 import 'controller/shell_controller.dart';
 import 'controller/shell_store.dart';
@@ -29,15 +30,11 @@ class _ShellPageState extends State<ShellPage> {
   }
 
   Future<void> init() async {
-    await Future.delayed(const Duration(seconds: 1));
-    widget.controller.store.state = const ShellSuccessState();
+    await Future.delayed(
+      const .new(milliseconds: 250),
+    );
 
-    // if (mounted) {
-    //   await showDialog(
-    //     context: context,
-    //     builder: (context) => const DevelopmentWarningDialog(),
-    //   );
-    // }
+    widget.controller.store.state = const ShellSuccessState();
   }
 
   @override

@@ -36,11 +36,10 @@ class _RainbowThemeBuilderState extends State<RainbowThemeBuilder>
         return Theme(
           data: theme,
           child: Builder(
-            builder:
-                (context) => widget.builder(
-                  context,
-                  theme,
-                ),
+            builder: (context) => widget.builder(
+              context,
+              theme,
+            ),
           ),
         );
       },

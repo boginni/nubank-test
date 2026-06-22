@@ -2,8 +2,9 @@ import 'package:custom_go_router/custom_go_router.dart';
 import 'package:flutter/material.dart';
 
 import '../app/app_dependencies.dart';
-import '../home/home_controller.dart';
-import '../home/home_store.dart';
+import '../home/controllers/home_controller.dart';
+import '../home/controllers/home_store.dart';
+import '../home/controllers/shorten_history_store.dart';
 import 'controller/shell_controller.dart';
 import 'controller/shell_store.dart';
 import 'shell_page.dart';
@@ -30,20 +31,23 @@ class ShellRoute extends AppRoute {
 
   late final store = ShellStore();
   late final homeStore = HomeStore();
+  late final shortenHistoryStore = ShortenHistoryStore();
 
   late final shellController = ShellController(
     appController: AppDependencies.get(),
     store: store,
     homeController: HomeController(
+      AppDependencies.get(),
+      AppDependencies.get(),
       store: homeStore,
+      shortenHistoryStore: shortenHistoryStore,
     ),
   );
 
   @override
-  String toPath() =>
-      Uri(
-        path: '/${ShellRouteConfig.basePath}',
-      ).toString();
+  String toPath() => Uri(
+    path: '/${ShellRouteConfig.basePath}',
+  ).toString();
 
   @override
   Widget toScreen({Object? extra}) {

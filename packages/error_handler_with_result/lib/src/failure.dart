@@ -5,25 +5,29 @@ abstract class Failure implements Exception {
 
   bool get isFatal;
 
-  Never throwError() {
-    final string = toString();
+  Never throwError() => resultThrowError(this);
+}
 
-    const maxLength = 1024 * 4;
+Never resultThrowError(Failure failure) {
+  final string = failure.toString();
 
-    if (string.length > maxLength) {
-      final clipped = string.substring(0, maxLength);
+  const maxLength = 1024 * 4;
 
-      Error.throwWithStackTrace(
-        Exception('Failure message too long, clipped: $clipped'),
-        stackTrace,
-      );
-    }
-
-    Error.throwWithStackTrace(this, stackTrace);
+  if (string.length < maxLength) {
+    Error.throwWithStackTrace(failure, failure.stackTrace);
   }
+
+  final clipped = string.substring(0, maxLength);
+
+  Error.throwWithStackTrace(
+    Exception('Failure message too long, clipped: $clipped'),
+    failure.stackTrace,
+  );
 }
 
 abstract class TimeoutFailure implements Failure {}
+
+abstract class ClientServerFailure implements Failure {}
 
 class SerializationFailure extends Failure {
   const SerializationFailure(this.error, StackTrace stackTrace)

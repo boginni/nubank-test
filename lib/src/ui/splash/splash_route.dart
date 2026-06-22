@@ -1,5 +1,3 @@
-
-
 import 'package:custom_go_router/custom_go_router.dart';
 import 'package:flutter/material.dart';
 
@@ -31,10 +29,9 @@ class SplashRoute extends AppRoute {
   late final store = SplashStore();
 
   @override
-  String toPath() =>
-      Uri(
-        path: '/${SplashRouteConfig.basePath}',
-      ).toString();
+  String toPath() => Uri(
+    path: '/${SplashRouteConfig.basePath}',
+  ).toString();
 
   @override
   Widget toScreen({Object? extra}) {

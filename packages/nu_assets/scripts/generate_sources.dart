@@ -78,8 +78,10 @@ void main() {
 
       variables.add(variableName);
 
-      final assetPath =
-          finalFile.path.replaceAll(r'\', '/').split('assets/').last;
+      final assetPath = finalFile.path
+          .replaceAll(r'\', '/')
+          .split('assets/')
+          .last;
       buffer.writeln(
         "  static const String $variableName = '\$_prefix/assets/$assetPath';",
       );
@@ -134,7 +136,8 @@ String _toCamelCase(String input, Set<String> existingNames) {
 
   if (parts.isEmpty) return 'unnamedAsset';
 
-  var camel = parts.first.toLowerCase() +
+  var camel =
+      parts.first.toLowerCase() +
       parts.skip(1).map((s) => _capitalize(s.toLowerCase())).join('');
 
   if (RegExp(r'^\d').hasMatch(camel)) {

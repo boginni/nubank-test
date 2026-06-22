@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:nu_l10n/nu_l10n.dart';
+
 import 'app_dependencies.dart';
-import 'components/global_context_provider.dart';
 import 'components/inverse_brightness_builder.dart';
 import 'controllers/app_controller.dart';
 import 'material_theme.dart';
@@ -33,9 +32,7 @@ class _AppWidgetState extends State<AppWidget> {
     );
   }
 
-  void init() {
-    // widget.controller.init();
-  }
+  void init() {}
 
   ThemeData get lightTheme => theme.getTheme(
     ThemeData.light(useMaterial3: true),
@@ -59,21 +56,13 @@ class _AppWidgetState extends State<AppWidget> {
           supportedLocales: NuL10n.supportedLocales,
           localizationsDelegates: NuL10n.localizationsDelegates,
           routerConfig: widget.controller.appRoutes.routes,
-          builder: (context, child) => GlobalContextProviderWidget(
-            child: ThemeRegistry(
-              lightTheme: lightTheme,
-              darkTheme: darkTheme,
-              child: child ?? const Offstage(),
-            ),
+          builder: (context, child) => ThemeRegistry(
+            lightTheme: lightTheme,
+            darkTheme: darkTheme,
+            child: child ?? const Offstage(),
           ),
         );
       },
-    );
-  }
-
-  ThemeData getTheme(ThemeData base) {
-    return base.copyWith(
-      textTheme: GoogleFonts.poppinsTextTheme(base.textTheme),
     );
   }
 }
