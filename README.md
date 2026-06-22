@@ -51,12 +51,21 @@ para o desenvolvimento futuro foram:
 Este projeto foi desenvolvido com foco na versão do Flutter 3.44.0, sendo esta a versão recomendada
 para a execução.
 
-1. Rode o comando do Flutter (ele resolverá as dependências sozinho):
-   `flutter run`
+1. Navegue até o pacote de internacionalização e force a geração dos arquivos:
+    ```bash
+       cd packages/nu_l10n
+       flutter gen-l10n
+    ```
 
-2. Se os arquivos de internacionalização não forem gerados, force a geração manual:
-   `cd packages/nu_l10n`
-   `flutter gen-l10n`
+2. Volte para a pasta raiz do projeto:
+    ```bash
+       cd ../..
+    ```
+
+3. Por fim, rode o projeto (o Flutter resolverá as dependências restantes automaticamente):
+    ```bash
+       flutter run
+    ```
 
 ## Executando os Testes
 
