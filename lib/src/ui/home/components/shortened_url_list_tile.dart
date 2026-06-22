@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:nu_design_system/nu_design_system.dart';
 
 import '../../../domain/dto/entities/shortened_url_entity.dart';
+import '../../../domain/environment.dart';
 import '../../app/extensions/context_extensions.dart';
-import 'favicon_widget.dart';
 
 class ShortenedUrlListTile extends StatelessWidget {
   final ShortenedUrlEntity entity;
@@ -39,6 +40,7 @@ class ShortenedUrlListTile extends StatelessWidget {
                 FaviconImage(
                   url: entity.originalUrl,
                   size: 32,
+                  proxyUrl: Environment.faviconProxy,
                 ),
                 const SizedBox(width: 8.0),
                 Expanded(

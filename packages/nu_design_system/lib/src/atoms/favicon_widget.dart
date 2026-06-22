@@ -2,16 +2,16 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:nu_assets/nu_assets.dart';
 
-import '../../../domain/environment.dart';
-
 class FaviconImage extends StatelessWidget {
   final String? url;
   final double size;
+  final String proxyUrl;
 
   const FaviconImage({
     super.key,
     this.url,
     this.size = 48.0,
+    required this.proxyUrl,
   });
 
   String? getFavicon(
@@ -36,7 +36,7 @@ class FaviconImage extends StatelessWidget {
       return null;
     }
 
-    final corsWrapperUri = Uri.tryParse(Environment.faviconProxy)?.replace(
+    final corsWrapperUri = Uri.tryParse(proxyUrl)?.replace(
       queryParameters: {
         'domain': host,
         'sz': ?size?.toString(),

@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:nu_design_system/nu_design_system.dart';
 import 'package:nu_l10n/nu_l10n.dart';
 
 import 'app_dependencies.dart';
-import 'components/inverse_brightness_builder.dart';
 import 'controllers/app_controller.dart';
 import 'material_theme.dart';
 
